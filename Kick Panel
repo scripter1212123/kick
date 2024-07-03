@@ -1,0 +1,179 @@
+-- GUI to Lua
+-----
+-- Version: 2.0.
+-- Made by chrisopdemobiel.
+
+-- Instances:
+
+local AdminPanel = Instance.new("ScreenGui")
+local TogglePanel = Instance.new("TextButton")
+local AdminPanel_2 = Instance.new("Frame")
+local KickPlayer = Instance.new("TextButton")
+local Frame = Instance.new("Frame")
+local Player = Instance.new("TextBox")
+local Reason = Instance.new("TextBox")
+local Kick = Instance.new("TextButton")
+local Cancel = Instance.new("TextButton")
+
+--Properties:
+
+AdminPanel.Name = "Admin Panel"
+AdminPanel.Parent = game.Workspace["Part 1 and 2"]
+AdminPanel.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+TogglePanel.Name = "TogglePanel"
+TogglePanel.Parent = AdminPanel
+TogglePanel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TogglePanel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+TogglePanel.Position = UDim2.new(0.0166666675, 0, 0.469606668, 0)
+TogglePanel.Size = UDim2.new(0, 200, 0, 50)
+TogglePanel.Font = Enum.Font.SourceSans
+TogglePanel.Text = "admin panel"
+TogglePanel.TextColor3 = Color3.fromRGB(0, 0, 0)
+TogglePanel.TextScaled = true
+TogglePanel.TextSize = 14.000
+TogglePanel.TextWrapped = true
+
+AdminPanel_2.Name = "AdminPanel"
+AdminPanel_2.Parent = AdminPanel
+AdminPanel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AdminPanel_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+AdminPanel_2.Position = UDim2.new(0.317859948, 0, 0.153754473, 0)
+AdminPanel_2.Size = UDim2.new(0, 463, 0, 581)
+AdminPanel_2.Visible = false
+
+KickPlayer.Name = "KickPlayer"
+KickPlayer.Parent = AdminPanel_2
+KickPlayer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+KickPlayer.BorderColor3 = Color3.fromRGB(27, 42, 53)
+KickPlayer.Position = UDim2.new(0.036717061, 0, 0.0309810676, 0)
+KickPlayer.Size = UDim2.new(0, 172, 0, 108)
+KickPlayer.Font = Enum.Font.SourceSans
+KickPlayer.Text = "Kick Player"
+KickPlayer.TextColor3 = Color3.fromRGB(255, 255, 255)
+KickPlayer.TextScaled = true
+KickPlayer.TextSize = 14.000
+KickPlayer.TextWrapped = true
+
+Frame.Parent = KickPlayer
+Frame.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+Frame.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Frame.Position = UDim2.new(0.377906978, 0, 1.33333325, 0)
+Frame.Size = UDim2.new(0, 298, 0, 398)
+Frame.Visible = false
+
+Player.Name = "Player"
+Player.Parent = Frame
+Player.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Player.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Player.Position = UDim2.new(0.134228185, 0, 0.0276381914, 0)
+Player.Size = UDim2.new(0, 219, 0, 67)
+Player.Font = Enum.Font.SourceSans
+Player.PlaceholderText = "Player"
+Player.Text = ""
+Player.TextColor3 = Color3.fromRGB(0, 0, 0)
+Player.TextScaled = true
+Player.TextSize = 14.000
+Player.TextWrapped = true
+
+Reason.Name = "Reason"
+Reason.Parent = Frame
+Reason.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Reason.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Reason.Position = UDim2.new(0.0402684547, 0, 0.25879398, 0)
+Reason.Size = UDim2.new(0, 274, 0, 160)
+Reason.Font = Enum.Font.SourceSans
+Reason.PlaceholderText = "Reason"
+Reason.Text = ""
+Reason.TextColor3 = Color3.fromRGB(0, 0, 0)
+Reason.TextSize = 45.000
+Reason.TextWrapped = true
+
+Kick.Name = "Kick"
+Kick.Parent = Frame
+Kick.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Kick.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Kick.Position = UDim2.new(0.164429531, 0, 0.711055279, 0)
+Kick.Size = UDim2.new(0, 210, 0, 45)
+Kick.Font = Enum.Font.SourceSans
+Kick.Text = "Kick"
+Kick.TextColor3 = Color3.fromRGB(0, 0, 0)
+Kick.TextScaled = true
+Kick.TextSize = 14.000
+Kick.TextWrapped = true
+
+Cancel.Name = "Cancel"
+Cancel.Parent = Frame
+Cancel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Cancel.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Cancel.Position = UDim2.new(0.261744976, 0, 0.869346738, 0)
+Cancel.Size = UDim2.new(0, 152, 0, 45)
+Cancel.Font = Enum.Font.SourceSans
+Cancel.Text = "Cancel"
+Cancel.TextColor3 = Color3.fromRGB(0, 0, 0)
+Cancel.TextScaled = true
+Cancel.TextSize = 14.000
+Cancel.TextWrapped = true
+
+-- Scripts:
+
+local function PPKF_fake_script() -- TogglePanel.Open/Close 
+	local script = Instance.new('LocalScript', TogglePanel)
+
+	local frame = script.Parent.Parent.AdminPanel
+	local button = script.Parent
+	
+	button.MouseButton1Click:Connect(function()
+		if frame.Visible == true then
+			frame.Visible = false
+		else
+			frame.Visible = true
+		end
+	end)
+end
+coroutine.wrap(PPKF_fake_script)()
+local function HQEMB_fake_script() -- AdminPanel.Whitelist 
+	local script = Instance.new('LocalScript', AdminPanel)
+
+	local plr = game.Players.LocalPlayer
+	
+	if plr.Name == "DevDillbill" or plr.UserId == "294396390" then
+		script.Parent.Enabled = true
+	else
+		script.Parent.Enabled = false
+	end
+end
+coroutine.wrap(HQEMB_fake_script)()
+local function OKAR_fake_script() -- KickPlayer.KickScripts 
+	local script = Instance.new('LocalScript', KickPlayer)
+
+	local frame = script.Parent.Frame
+	local button = script.Parent
+	
+	button.MouseButton1Click:Connect(function()
+		if frame.Visible == true then
+			frame.Visible = false
+		else
+			frame.Visible = true
+		end
+	end)
+	
+	frame.Cancel.MouseButton1Click:connect(function()
+	    frame.Visible = false
+	end)
+	
+	frame.Kick.MouseButton1Click:connect(function()
+	    if game.Players:FindFirstChild(frame.Player.Text) then
+	        game.ReplicatedStorage.KickPlayer:FireServer(frame.Player.Text, frame.Reason.Text)
+	    end
+	end)
+end
+coroutine.wrap(OKAR_fake_script)()
+local function KOWB_fake_script() -- AdminPanel.KickHandler (SSS) 
+	local script = Instance.new('Script', AdminPanel)
+
+	game.ReplicatedStorage.KickPlayer.OnServerEvent:connect(function(player, playerToKick, reason)
+	    game.Players:FindFirstChild(playerToKick):Kick(reason)
+	end)
+end
+coroutine.wrap(KOWB_fake_script)()
